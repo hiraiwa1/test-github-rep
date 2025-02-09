@@ -2,6 +2,11 @@ name: Manual
 on:
   workflow_dispatch:
     inputs:
+      type: choice
+      options:
+        - info
+        - warn
+        - error
       greeting:
         type: string
         default: Hello
