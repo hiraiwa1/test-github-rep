@@ -3,11 +3,11 @@ on: push
 jobs:
     print:
       strategy:
-        matrix:
-          include:
-            - os: ubuntu-latest
+        matrix:                 # 多次元マトリックスの定義
+          include:              # 組み合わせ条件を手動で列挙
+            - os: ubuntu-latest # パターン１
               version: 20
-            - os: macos-latest
+            - os: macos-latest  # パターン２
               version: 18
       runs-on: ${{ matrix.os }}
       steps:
