@@ -15,7 +15,7 @@ jobs:
     needs: [upload]
     steps:
       - uses: actions/download-artifact@v4
-        width:
+        with:
           name: uploaded
           path: downloaded
       - run: cat downloaded/date.txt
