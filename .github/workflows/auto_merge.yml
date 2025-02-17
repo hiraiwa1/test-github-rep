@@ -2,13 +2,14 @@ name: Auto merge
 on: pull_request
 jobs:
   merge:
-    if: ${{ github.actor == 'dependabot[bot]' }}
+    if: ${{ github.actor == 'dependabot[bot]' }}  # Dependabotのプルリクのみ
     runs-on: ubuntu-latest
-    permissions:
+    permissions:                                  # マージに必要なパーミッション
       contents: write
       pull-requests: write
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # GitHub CLIのクレデンシャル
     steps:
       - uses: actions/checkout@v4
-      - run: gh pr merge "${GITHUB_HEAD_REF}" --merge
+      - run: gh pr review "${GITHUB_HEAD_REF}" --approve
+      - run: gh pr merge "${GITHUB_HEAD_REF}" --merge --auto
